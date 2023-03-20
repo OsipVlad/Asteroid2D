@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 447135473}
   - component: {fileID: 447135472}
   - component: {fileID: 447135471}
+  - component: {fileID: 447135470}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -199,6 +200,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &447135470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447135469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 115be285f88e4f9428075085f9c3db7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 5145606807294741050, guid: 8f2b8162b2af7cf42b698e23eb4df95f, type: 3}
+  player: {fileID: 447135469}
+  thrustSpeed: 3
+  turnSpeed: 0.6
 --- !u!61 &447135471
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -623,8 +640,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1969767431}
   - component: {fileID: 1969767430}
+  - component: {fileID: 1969767432}
   m_Layer: 0
-  m_Name: GameController
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -637,7 +655,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1969767429}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 115be285f88e4f9428075085f9c3db7c, type: 3}
   m_Name: 
@@ -662,3 +680,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1969767432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969767429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255446a3e93dcfe4294e578c1205db2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 447135469}
+  lives: 3
+  respawnTime: 3
