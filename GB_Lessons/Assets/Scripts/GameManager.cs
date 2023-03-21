@@ -2,21 +2,27 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject player;
-    public int lives = 3;
-    public float respawnTime = 3.0f;
+    [SerializeField] private GameObject player;
+    [SerializeField] private int lives = 3;
+    [SerializeField] private float respawnTime = 3.0f;
+    public void OnEnable()
+    {
+        PlayerInfo.onPlayerEvent += PlayerDead;
+    }
+
     public void PlayerDead()
     {
+        
         this.lives--;
 
-        if(lives <= 0)
+        if (lives <= 0)
         {
             GameOver();
         }
         else
         {
+            player.SetActive(false);
             Invoke(nameof(Respawn), this.respawnTime);
-
         }
 
     }
@@ -30,6 +36,6 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-
+        Debug.Log("Game Over\nYou Dead");
     }
 }

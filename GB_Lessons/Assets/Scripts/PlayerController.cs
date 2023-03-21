@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Bullet bulletPrefab;
-    public GameObject player;
-    public float thrustSpeed = 1.0f;
-    public float turnSpeed = 1.0f;
+    [SerializeField] private Bullet bulletPrefab;
+    [SerializeField] private GameObject player;
+    [SerializeField] private float thrustSpeed = 1.0f;
+    [SerializeField] private float turnSpeed = 1.0f;
 
     private bool _trusting;
     private float _turnDirection;
@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        _rigidbody= player.GetComponent<Rigidbody2D>();
+        _rigidbody = player.GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -45,7 +45,8 @@ public class PlayerController : MonoBehaviour
         {
             _rigidbody.AddForce(player.transform.up * this.thrustSpeed);
         }
-        if(_turnDirection != 0.0f ) {
+        if(_turnDirection != 0.0f ) 
+        {
             _rigidbody.AddTorque(_turnDirection * this.turnSpeed);
         }
     }
@@ -55,8 +56,6 @@ public class PlayerController : MonoBehaviour
         Bullet bullet = Instantiate(this.bulletPrefab, player.transform.position, player.transform.rotation);
         bullet.Project(player.transform.up);
     }
-
-
 
 
 
