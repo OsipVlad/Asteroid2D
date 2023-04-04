@@ -1,25 +1,28 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+namespace Asteroid2D
 {
-    private Rigidbody2D _rigidbody;
-
-    public float speed = 500.0f;
-    public float maxLiveTime = 10.0f;
-
-    private void Awake()
+    public class Bullet : MonoBehaviour
     {
-        _rigidbody= GetComponent<Rigidbody2D>();
-    }
+        private Rigidbody2D _rigidbody;
 
-    public void Project(Vector2 direction)
-    {
-        _rigidbody.AddForce(direction * this.speed);
-        Destroy(this.gameObject, this.maxLiveTime);
-    }
+        public float speed = 500.0f;
+        public float maxLiveTime = 10.0f;
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Destroy(this.gameObject);
+        private void Awake()
+        {
+            _rigidbody = GetComponent<Rigidbody2D>();
+        }
+
+        public void Project(Vector2 direction)
+        {
+            _rigidbody.AddForce(direction * this.speed);
+            Destroy(this.gameObject, this.maxLiveTime);
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
