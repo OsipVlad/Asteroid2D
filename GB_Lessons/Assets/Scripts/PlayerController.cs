@@ -2,21 +2,30 @@ using UnityEngine;
 
 namespace Asteroid2D
 {
+    [RequireComponent(typeof(Pool))]
 
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private Bullet bulletPrefab;
+        [Header("Player Ship")]
         [SerializeField] private GameObject player;
+        [SerializeField] private Transform _flame;
         [SerializeField] private float thrustSpeed = 1.0f;
         [SerializeField] private float turnSpeed = 1.0f;
+        [Header("Bullet")]
+        [SerializeField] private int poolCount = 10;
+        [SerializeField] private bool autoExpand = false;
+        [SerializeField] Bullet bulletPrefab;
+
+        private Pool _pool;
 
         private bool _trusting;
         private float _turnDirection;
 
         private Rigidbody2D _rigidbody;
 
-        private void Awake()
+        private void Start()
         {
+            _pool = GetComponent<Pool>();
             _rigidbody = player.GetComponent<Rigidbody2D>();
         }
 
@@ -56,8 +65,8 @@ namespace Asteroid2D
 
         private void Shoot()
         {
-            Bullet bullet = Instantiate(this.bulletPrefab, player.transform.position, player.transform.rotation);
-            bullet.Project(player.transform.up);
+            Vector3 flamePosition = _flame.position;
+            _pool.GetFreeElement(flamePosition);
         }
 
 

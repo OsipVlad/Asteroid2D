@@ -60,6 +60,6 @@ namespace Asteroid2D
             GameObject.Destroy(asteroidModel.AsteroidObject, _view.maxLiveTime);
         }
 
-       
+        
     }
 }
