@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Asteroid2D
 {
-    [RequireComponent(typeof(Pool))]
 
     public class PlayerController : MonoBehaviour
     {
@@ -14,10 +13,7 @@ namespace Asteroid2D
         [Header("Bullet")]
         [SerializeField] private int poolCount = 10;
         [SerializeField] private bool autoExpand = false;
-        [SerializeField] Bullet bulletPrefab;
-
-        private Pool _pool;
-
+        
         private bool _trusting;
         private float _turnDirection;
 
@@ -25,12 +21,12 @@ namespace Asteroid2D
 
         private void Start()
         {
-            _pool = GetComponent<Pool>();
             _rigidbody = player.GetComponent<Rigidbody2D>();
         }
 
         private void Update()
         {
+
             _trusting = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
@@ -65,8 +61,12 @@ namespace Asteroid2D
 
         private void Shoot()
         {
-            Vector3 flamePosition = _flame.position;
-            _pool.GetFreeElement(flamePosition);
+            GameObject bym = Pool.singleton.Get("Bullet");
+            if(bym != null)
+            {
+                bym.transform.position = player.transform.up;
+                bym.SetActive(true);
+            }
         }
 
 
