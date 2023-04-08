@@ -6,7 +6,6 @@ namespace Asteroid2D
 {
     public class BulletMove : MonoBehaviour
     {
-        private Vector3 velocity;
 
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -16,10 +15,6 @@ namespace Asteroid2D
                 Destroy(collision.gameObject);
             }
         }
-        private void Update()
-        {
-            this.transform.Translate(velocity);
-
-        }
+        
     }
 }

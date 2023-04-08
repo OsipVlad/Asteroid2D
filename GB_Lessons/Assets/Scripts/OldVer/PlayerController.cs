@@ -7,16 +7,13 @@ namespace Asteroid2D
     {
         [Header("Player Ship")]
         [SerializeField] private GameObject player;
-        [SerializeField] private Transform _flame;
         [SerializeField] private float thrustSpeed = 1.0f;
         [SerializeField] private float turnSpeed = 1.0f;
-        [Header("Bullet")]
-        [SerializeField] private int poolCount = 10;
-        [SerializeField] private bool autoExpand = false;
-        
+        [Header("Bullet Out")]
+        [SerializeField] private GameObject bulletOut;
         private bool _trusting;
         private float _turnDirection;
-
+        private Pool _poolBullet;
         private Rigidbody2D _rigidbody;
 
         private void Start()
@@ -61,12 +58,10 @@ namespace Asteroid2D
 
         private void Shoot()
         {
-            GameObject bym = Pool.singleton.Get("Bullet");
-            if(bym != null)
-            {
-                bym.transform.position = player.transform.up;
-                bym.SetActive(true);
-            }
+            var bulletShoot = _poolBullet.Get("Bullet");
+            bulletShoot.SetActive(true);
+            
+
         }
 
 

@@ -20,7 +20,6 @@ namespace Asteroid2D
         {
             singleton = this;
         }
-        // Start is called before the first frame update
         void Start()
         {
             pooledItems = new List<GameObject>();
@@ -47,10 +46,6 @@ namespace Asteroid2D
             return null;
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        
     }
 }

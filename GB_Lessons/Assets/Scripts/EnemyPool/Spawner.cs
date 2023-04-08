@@ -6,6 +6,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Shape _shapePrefab;
     [SerializeField] private int _spawnAmount;
     [SerializeField] private bool _usePool;
+    [SerializeField] private int _defaultCapacity = 10;
+    [SerializeField] private int _maxCapacity = 30;
     private ObjectPool<Shape> _pool;
     void Start()
     {
@@ -21,7 +23,7 @@ public class Spawner : MonoBehaviour
         }, shape =>
         {
             Destroy(shape.gameObject);
-        }, false, 10, 20);
+        }, false, _defaultCapacity, _maxCapacity);
         InvokeRepeating(nameof(Spawn), 0.2f, 0.2f);
     }
 
@@ -30,7 +32,7 @@ public class Spawner : MonoBehaviour
         for(int i = 0; i < _spawnAmount; i++)
         {
             var shape = _usePool ? _pool.Get(): Instantiate(_shapePrefab);
-            shape.transform.position = transform.position + Random.insideUnitSphere * 5;
+            shape.transform.position = transform.position + Random.onUnitSphere * 5;
             shape.Init(KillShape);
         }
     }
